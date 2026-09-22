@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tasks - ProjectHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            ProjectHub
+        </div>
+
+        <nav>
+            <a href="/">Dashboard</a>
+            <a href="#">Projects</a>
+            <a href="/tasks">Tasks</a>
+            <a href="#">Files</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="create-page">
+
+            <div class="form-header">
+
+                <a href="/" class="back-link">
+                    ← Back to Dashboard
+                </a>
+
+                <h1>
+                    Project Tasks
+                </h1>
+<a href="/create-task" class="create-button">
+    + Create Task
+</a>
+                <p>
+                    Manage and track tasks for your projects.
+                </p>
+
+            </div>
+
+
+            <div class="project-form">
+
+                {% if tasks %}
+
+                    {% for task in tasks %}
+
+                    <div class="project-card">
+
+                        <div class="card-top">
+
+                            <h3>
+                                {{ task["task_name"] }}
+                            </h3>
+
+      <form method="POST"
+      action="/update-task-status/{{ task['id'] }}">
+
+    <select name="status" onchange="this.form.submit()">
+
+        <option value="Pending"
+            {% if task["status"] == "Pending" %}selected{% endif %}>
+            Pending
+        </option>
+
+        <option value="In Progress"
+            {% if task["status"] == "In Progress" %}selected{% endif %}>
+            In Progress
+        </option>
+
+        <option value="Completed"
+            {% if task["status"] == "Completed" %}selected{% endif %}>
+            Completed
+        </option>
+
+    </select>
+
+</form>
+
+                        </div>
+<p>
+    <strong>Project:</strong>
+    {{ task["project_name"] }}
+</p>
+                        <p>
+                            {{ task["description"] or "No description provided." }}
+                        </p>
+
+                        <p>
+                            <strong>Assigned To:</strong>
+                            {{ task["assigned_to"] or "Not assigned" }}
+                        </p>
+
+                    </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <div class="new-project-card">
+
+                        <div class="plus">
+                            +
+                        </div>
+
+                        <h3>
+                            No Tasks Yet
+                        </h3>
+
+                        <p>
+                            Create tasks for your projects
+                            and start tracking progress.
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

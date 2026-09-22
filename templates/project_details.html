@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ project["project_name"] }} - ProjectHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            ProjectHub
+        </div>
+
+        <nav>
+
+            <a href="/">
+                Dashboard
+            </a>
+
+            <a href="/projects">
+                Projects
+            </a>
+
+            <a href="/tasks">
+                Tasks
+            </a>
+
+            <a href="/files">
+                Files
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="create-page">
+
+            <div class="form-header">
+
+                <a href="/projects" class="back-link">
+                    ← Back to Projects
+                </a>
+
+                <h1>
+                    {{ project["project_name"] }}
+                </h1>
+
+                <p>
+                    Project details and collaboration information.
+                </p>
+
+            </div>
+
+
+            <div class="project-form">
+
+                <div class="form-group">
+
+                    <label>
+                        Project Description
+                    </label>
+
+                    <p>
+                        {{ project["description"] }}
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Start Date
+                    </label>
+
+                    <p>
+                        {{ project["start_date"] or "Not provided" }}
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Deadline
+                    </label>
+
+                    <p>
+                        {{ project["deadline"] or "Not provided" }}
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Team Members
+                    </label>
+
+                    <p>
+                        {{ project["members"] or "Not provided" }}
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Technologies
+                    </label>
+
+                    <p>
+                        {{ project["technologies"] or "Not provided" }}
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Project Objectives
+                    </label>
+
+                    <p>
+                        {{ project["objectives"] or "Not provided" }}
+                    </p>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <a href="/tasks"
+                       class="secondary-button">
+
+                        View Tasks
+
+                    </a>
+
+
+                    <a href="/files"
+                       class="secondary-button">
+
+                        View Files
+
+                    </a>
+
+
+                    <a href="/documentation"
+                       class="secondary-button">
+
+                        Documentation
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

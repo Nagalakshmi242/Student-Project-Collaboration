@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Task - ProjectHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            ProjectHub
+        </div>
+
+        <nav>
+            <a href="/">Dashboard</a>
+            <a href="#">Projects</a>
+            <a href="/tasks">Tasks</a>
+            <a href="#">Files</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="create-page">
+
+            <div class="form-header">
+
+                <a href="/tasks" class="back-link">
+                    ← Back to Tasks
+                </a>
+
+                <h1>
+                    Create New Task
+                </h1>
+
+                <p>
+                    Add a task and assign it to a project member.
+                </p>
+
+            </div>
+
+
+            <form class="project-form"
+                  method="POST"
+                  action="/create-task">
+
+                <div class="form-group">
+
+                    <label for="project_id">
+                        Project
+                    </label>
+
+                    <select id="project_id"
+                            name="project_id"
+                            required>
+
+                        <option value="">
+                            Select a project
+                        </option>
+
+                        {% for project in projects %}
+
+                        <option value="{{ project['id'] }}">
+                            {{ project['project_name'] }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="task_name">
+                        Task Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="task_name"
+                        name="task_name"
+                        placeholder="Example: Design Homepage"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Task Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        placeholder="Describe the task"></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="assigned_to">
+                        Assigned To
+                    </label>
+
+                    <input
+                        type="text"
+                        id="assigned_to"
+                        name="assigned_to"
+                        placeholder="Example: Rahul">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="status">
+                        Status
+                    </label>
+
+                    <select id="status"
+                            name="status">
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="In Progress">
+                            In Progress
+                        </option>
+
+                        <option value="Completed">
+                            Completed
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <a href="/tasks"
+                       class="cancel-button">
+                        Cancel
+                    </a>
+
+                    <button type="submit"
+                            class="save-button">
+                        Create Task
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

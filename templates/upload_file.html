@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Upload File - ProjectHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            ProjectHub
+        </div>
+
+        <nav>
+            <a href="/">Dashboard</a>
+            <a href="#">Projects</a>
+            <a href="/tasks">Tasks</a>
+            <a href="/files">Files</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="create-page">
+
+            <div class="form-header">
+
+                <a href="/files" class="back-link">
+                    ← Back to Files
+                </a>
+
+                <h1>
+                    Upload Project File
+                </h1>
+
+                <p>
+                    Upload a file and associate it with your project.
+                </p>
+
+            </div>
+
+
+            <form class="project-form"
+                  method="POST"
+                  action="/upload-file"
+                  enctype="multipart/form-data">
+
+                <div class="form-group">
+
+                    <label for="project_id">
+                        Project
+                    </label>
+
+                    <select id="project_id"
+                            name="project_id"
+                            required>
+
+                        <option value="">
+                            Select a project
+                        </option>
+
+                        {% for project in projects %}
+
+                        <option value="{{ project['id'] }}">
+                            {{ project['project_name'] }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="uploaded_by">
+                        Uploaded By
+                    </label>
+
+                    <input
+                        type="text"
+                        id="uploaded_by"
+                        name="uploaded_by"
+                        placeholder="Example: Rahul">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="file">
+                        Select File
+                    </label>
+
+                    <input
+                        type="file"
+                        id="file"
+                        name="file"
+                        required>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <a href="/files"
+                       class="cancel-button">
+                        Cancel
+                    </a>
+
+                    <button type="submit"
+                            class="save-button">
+                        Upload File
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

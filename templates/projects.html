@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Projects - ProjectHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            ProjectHub
+        </div>
+
+        <nav>
+
+            <a href="/">
+                Dashboard
+            </a>
+
+            <a href="/projects">
+                Projects
+            </a>
+
+            <a href="/tasks">
+                Tasks
+            </a>
+
+            <a href="/files">
+                Files
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="dashboard">
+
+            <div class="dashboard-header">
+
+                <div>
+
+                    <h1>
+                        Projects
+                    </h1>
+
+                    <p>
+                        View and manage all your academic projects.
+                    </p>
+
+                </div>
+
+
+                <a href="/create-project"
+                   class="secondary-button">
+
+                    + New Project
+
+                </a>
+
+            </div>
+
+
+            <div class="project-grid">
+
+                {% if projects %}
+
+                    {% for item in projects %}
+
+                    <div class="project-card">
+
+                        <div class="card-top">
+
+                            <span class="project-icon">
+
+                                {{ item["project_name"][:2].upper() }}
+
+                            </span>
+
+                            <span class="status active">
+                                Project
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+
+                            {{ item["project_name"] }}
+
+                        </h3>
+
+
+                        <p>
+
+                            {{ item["description"] }}
+
+                        </p>
+
+
+                        <p>
+
+                            <strong>
+                                Team Members:
+                            </strong>
+
+                            {{ item["members"] or "Not provided" }}
+
+                        </p>
+
+
+                        <p>
+
+                            <strong>
+                                Technologies:
+                            </strong>
+
+                            {{ item["technologies"] or "Not provided" }}
+
+                        </p>
+
+
+                        <a
+                            href="/project/{{ item['id'] }}"
+                            class="view-button">
+
+                            View Project
+
+                        </a>
+
+                    </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <div class="new-project-card">
+
+                        <div class="plus">
+                            +
+                        </div>
+
+                        <h3>
+                            No Projects Yet
+                        </h3>
+
+                        <p>
+                            Create your first academic project.
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

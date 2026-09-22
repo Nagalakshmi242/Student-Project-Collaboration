@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Files - ProjectHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            ProjectHub
+        </div>
+
+        <nav>
+            <a href="/">Dashboard</a>
+            <a href="#">Projects</a>
+            <a href="/tasks">Tasks</a>
+            <a href="/files">Files</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="create-page">
+
+            <div class="form-header">
+
+                <a href="/" class="back-link">
+                    ← Back to Dashboard
+                </a>
+
+                <h1>
+                    Project Files
+                </h1>
+
+                <a href="/upload-file" class="create-button">
+                    + Upload File
+                </a>
+
+                <p>
+                    Share and manage files for your projects.
+                </p>
+
+            </div>
+
+
+            <div class="project-form">
+
+                {% if files %}
+
+                    {% for file in files %}
+
+                    <div class="project-card">
+
+                        <div class="card-top">
+
+                            <h3>
+                                {{ file["file_name"] }}
+                            </h3>
+
+                        </div>
+
+                        <p>
+                            <strong>Project:</strong>
+                            {{ file["project_name"] }}
+                        </p>
+
+                        <p>
+                            <strong>Uploaded By:</strong>
+                            {{ file["uploaded_by"] or "Not provided" }}
+                        </p>
+
+                    </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <div class="new-project-card">
+
+                        <div class="plus">
+                            +
+                        </div>
+
+                        <h3>
+                            No Files Yet
+                        </h3>
+
+                        <p>
+                            Upload project files
+                            and share them with your team.
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

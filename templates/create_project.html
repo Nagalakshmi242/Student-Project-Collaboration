@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create Project - ProjectHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            ProjectHub
+        </div>
+
+        <nav>
+
+            <a href="/">
+                Dashboard
+            </a>
+
+            <a href="#">
+                Projects
+            </a>
+
+            <a href="#">
+                Tasks
+            </a>
+
+            <a href="#">
+                Files
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main>
+
+        <section class="create-page">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="form-header">
+
+                <a href="/" class="back-link">
+                    ← Back to Dashboard
+                </a>
+
+                <h1>
+                    Create New Project
+                </h1>
+
+                <p>
+                    Add your project details and start
+                    collaborating with your team.
+                </p>
+
+            </div>
+
+
+            <!-- PROJECT FORM -->
+             <form class="project-form" method="POST" action="/create-project">
+
+           
+
+
+                <!-- PROJECT NAME -->
+
+                <div class="form-group">
+
+                    <label for="projectName">
+                        Project Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="projectName"
+                        name="projectName"
+                        placeholder="Enter project name"
+                        required>
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Project Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="5"
+                        placeholder="Describe your project..."
+                        required></textarea>
+
+                </div>
+
+
+                <!-- DATES -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="startDate">
+                            Start Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="startDate"
+                            name="startDate">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="deadline">
+                            Deadline
+                        </label>
+
+                        <input
+                            type="date"
+                            id="deadline"
+                            name="deadline">
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- TEAM MEMBERS -->
+
+                <div class="form-group">
+
+                    <label for="members">
+                        Team Members
+                    </label>
+
+                    <input
+                        type="text"
+                        id="members"
+                        name="members"
+                        placeholder="Example: Rahul, Priya, Anjali">
+
+                    <small>
+                        Separate multiple names with commas.
+                    </small>
+
+                </div>
+
+
+                <!-- TECHNOLOGIES -->
+
+                <div class="form-group">
+
+                    <label for="technologies">
+                        Technologies
+                    </label>
+
+                    <input
+                        type="text"
+                        id="technologies"
+                        name="technologies"
+                        placeholder="Example: HTML, CSS, Python, Flask">
+
+                </div>
+
+
+                <!-- OBJECTIVES -->
+
+                <div class="form-group">
+
+                    <label for="objectives">
+                        Project Objectives
+                    </label>
+
+                    <textarea
+                        id="objectives"
+                        name="objectives"
+                        rows="5"
+                        placeholder="Enter the main objectives of your project..."></textarea>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="form-actions">
+
+                    <a href="/" class="cancel-button">
+                        Cancel
+                    </a>
+
+                    <button type="submit" class="save-button">
+    Create Project
+</button>
+
+</form>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Project Documentation - ProjectHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            ProjectHub
+        </div>
+
+        <nav>
+
+            <a href="/">
+                Dashboard
+            </a>
+
+            <a href="#">
+                Projects
+            </a>
+
+            <a href="/tasks">
+                Tasks
+            </a>
+
+            <a href="/files">
+                Files
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="create-page">
+
+            <div class="form-header">
+
+                <a href="/" class="back-link">
+                    ← Back to Dashboard
+                </a>
+
+                <h1>
+                    Project Documentation
+                </h1>
+
+                <p>
+                    Add important documentation and technical
+                    information for your project.
+                </p>
+
+            </div>
+
+
+            <form class="project-form"
+                  method="POST"
+                  action="/documentation">
+
+
+                <div class="form-group">
+
+                    <label for="project_id">
+                        Project
+                    </label>
+
+                    <select id="project_id"
+                            name="project_id"
+                            required>
+
+                        <option value="">
+                            Select a project
+                        </option>
+
+                        {% for project in projects %}
+
+                        <option value="{{ project['id'] }}">
+
+                            {{ project['project_name'] }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="overview">
+                        Project Overview
+                    </label>
+
+                    <textarea
+                        id="overview"
+                        name="overview"
+                        rows="5"
+                        placeholder="Describe your project and its purpose..."
+                        required></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="requirements">
+                        Requirements
+                    </label>
+
+                    <textarea
+                        id="requirements"
+                        name="requirements"
+                        rows="5"
+                        placeholder="Enter project requirements..."></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="technical_details">
+                        Technical Details
+                    </label>
+
+                    <textarea
+                        id="technical_details"
+                        name="technical_details"
+                        rows="5"
+                        placeholder="Enter technologies, tools, frameworks, database details, etc."></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="notes">
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        name="notes"
+                        rows="5"
+                        placeholder="Add any additional notes..."></textarea>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <a href="/"
+                       class="cancel-button">
+
+                        Cancel
+
+                    </a>
+
+
+                    <button type="submit"
+                            class="save-button">
+
+                        Save Documentation
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

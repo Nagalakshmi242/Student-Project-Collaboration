@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - ProjectHub</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            ProjectHub
+        </div>
+
+        <nav>
+
+            <a href="/">
+                Dashboard
+            </a>
+
+            <a href="#">
+                Projects
+            </a>
+
+            <a href="/tasks">
+                Tasks
+            </a>
+
+            <a href="/files">
+                Files
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="dashboard">
+
+            <div class="dashboard-header">
+
+                <div>
+
+                    <h1>
+                        Student Project Collaboration
+                    </h1>
+
+                    <p>
+                        Manage your academic projects,
+                        tasks and team collaboration.
+                    </p>
+
+                </div>
+
+
+                <a href="/create-project"
+                   class="secondary-button">
+
+                    + New Project
+
+                </a>
+
+            </div>
+<div class="stats-grid">
+
+    <div class="stat-card">
+        <h3>{{ total_projects }}</h3>
+        <p>Total Projects</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>{{ total_tasks }}</h3>
+        <p>Total Tasks</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>{{ completed_tasks }}</h3>
+        <p>Completed Tasks</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>{{ total_files }}</h3>
+        <p>Total Files</p>
+    </div>
+
+</div>
+
+            <div class="project-grid">
+
+                {% if projects %}
+
+                    {% for item in projects %}
+
+                    <div class="project-card">
+
+                        <div class="card-top">
+
+                            <span class="project-icon">
+
+                                {{ item["project"]["project_name"][:2].upper() }}
+
+                            </span>
+
+
+                            {% if item["progress"] == 100 %}
+
+                                <span class="status completed">
+                                    Completed
+                                </span>
+
+                            {% elif item["progress"] > 0 %}
+
+                                <span class="status active">
+                                    In Progress
+                                </span>
+
+                            {% else %}
+
+                                <span class="status active">
+                                    Not Started
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <h3>
+
+                            {{ item["project"]["project_name"] }}
+
+                        </h3>
+
+
+                        <p>
+
+                            {{ item["project"]["description"] }}
+
+                        </p>
+
+
+                        <div class="members">
+
+                            <span>
+                                TM
+                            </span>
+
+                        </div>
+
+
+                        <div class="progress-info">
+
+                            <span>
+                                Progress
+                            </span>
+
+                            <span>
+                                {{ item["progress"] }}%
+                            </span>
+
+                        </div>
+
+
+                        <div class="progress">
+
+                            <div
+                                style="width: {{ item['progress'] }}%;">
+                            </div>
+
+                        </div>
+
+
+                        <p>
+
+                            <strong>
+                                Tasks:
+                            </strong>
+
+                            {{ item["completed_tasks"] }}
+                            /
+                            {{ item["total_tasks"] }}
+
+                            completed
+
+                        </p>
+
+
+                        <a
+                            href="/project/{{ item['project']['id'] }}"
+                            class="view-button">
+
+                            View Project
+
+                        </a>
+
+                    </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <div class="new-project-card">
+
+                        <div class="plus">
+                            +
+                        </div>
+
+                        <h3>
+                            No Projects Yet
+                        </h3>
+
+                        <p>
+                            Create your first academic
+                            project and start collaborating.
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+
+                <a
+                    href="/create-project"
+                    class="new-project-card"
+                    style="text-decoration: none; color: inherit;">
+
+                    <div class="plus">
+                        +
+                    </div>
+
+                    <h3>
+                        Create a Project
+                    </h3>
+
+                    <p>
+                        Start a new academic project
+                        and invite your teammates.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
